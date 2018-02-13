@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "wohlig-server",
+  "private_key_id": "04914a20a6131fea7484e17fefc006c5b7e6d6d3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDOYB8bxxoPJ/no\noRiOfYpd4JomGBZgW1EK14qAOJ7T9ZDPugT1sgoDIweWLnD9CZ5elQsHzpWNyJGI\nD0ZwdMF5aAYun+zTP3sQb9heCzk3xUvw3OfJB1Q83dWVi3g3oiroTL64ZaLPyzjm\n9VOxMlJEhRkcWGPIr4z2xUobI8Tm7/KAAPF4IWiRZnyKFiTTBfvkv3U2TeqsrA8Y\n1iZlDIp5VnSEUztrwnDpVpetrR3O0N42/fjobRe/ktQMoBB1JCaYNwLocVKFgwrQ\neT+k8W2MNpOtpw3TTFzSSKyPdazCP6f4ZB/l8JvGwfSomNYoAEnq9lc+RnYIemgr\n5mEYa8GnAgMBAAECggEADUowAVLuAQHbBw8GDM8AJRF8pm1bVjMrNzPazcJXqrX1\nRbCTTIXS5+bOle5Br8R5zVoduWVP84Rx/WgLv4bVRWMx2rjJFcV7FaY43GgunsJ2\nzyOlTX3KVUJtKacvQ63kGMzbD0wu6DYMYQXKsO4uUWPyJ7Aiz4lL3kGlhwqOTddn\nkof3WTeoOCdCX3unXL+BHHYl/kFPr68ccNuYvEVkJPVkcK8Q/jyiiPaz1J8IaMiC\nRmNUEh8qqisISDf4zJKP/7BYihiedhciRpPBF10UpcYOBm4XEmJAEgAr+ziXQBRv\nboSfBRWKbUgyDgokzAUjEAygNptwtQIbz1J1xb3B4QKBgQDrlMmongCKPHu/t0/T\n7s0mAIGa9J5ZAO1+Jn2ecQozCH8NGR00GiqoktUAVC4eDX6k0lYCVGcuqxfH7ayc\nAp38672RcmM6jvr9Dci8kGH7VDy4ysE4rXa7SyfWshjGHmFYTYzOzd2pkXVI/wZf\nplKvYoUcs553m9I6z9l581sB1wKBgQDgQ0zYj8fbDCNM3OxbvsiQlLj2USz+nT0x\nnP8qPlQf7+ONTj8BZW4+xKC4u5G9oMr40XD1VnXWuHWkQglpiUT14EvlFx1TWGYF\nsLE4OGYyk4cui7Q5SWvvmcGKqhys2jJ+o+cOL2TDkojdL6LUmTe9HguriOCw0JKx\n32u6GoTksQKBgG/mmutnMeZ32Gg2kMqgkf3NG8MZEuZAFI9phR3vn+Kh1IfKOB75\nlu2/4UFouwc3bcKozoYIxYJbbs5ezTDF5XmwGLmv1gaIyBvPolw/UOtrFfTJCoL7\nknxgtKm8qxvgbmjdXVcWXoYfO9DSoppojLoWWBhMEafK8k9RT4In4EC9AoGBANl5\nSg8ENxm7Rowl/OrnMtXJ8yeiBpEOaCYxidwsPyYNWkxQYZb4BpXF1dnuwuDyCYKK\nkBDJ/FHx5NsZ0sjN/dq13MNWy/Bj2+OOufy77JcFK2U+wtF+2rWqE95lIpOYsLjQ\nNqMx4HQrKJ/drvidcEjr1wNMJCAy0t68u1nol5CxAoGATkp7XE1RhG+p5oAXvc0M\ngHzvTjbuT6cBTp9qowLeysQSR/hmvwsA+WgdimMudAvBC0EGfDjWl7vgB17TbJ/M\nQn0wnYcv9aIz2J0ofn2EtA06h99hMOA6+N9atrFmDBd7DidnRZw36k/ddLQoavui\nWVFcQkmQoLdDh/3jrqsFnk8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "wohlig-server-ac@wohlig-server.iam.gserviceaccount.com",
+  "client_id": "115110425481805022662",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/wohlig-server-ac%40wohlig-server.iam.gserviceaccount.com"
+}
