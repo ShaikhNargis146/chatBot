@@ -21,7 +21,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
     $httpProvider.defaults.withCredentials = true;
     $stateProvider
         .state('home', {
-            url: "/",
+            url: "/home",
             templateUrl: tempateURL,
             controller: 'HomeCtrl'
         })
@@ -29,8 +29,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             url: "/links",
             templateUrl: tempateURL,
             controller: 'LinksCtrl'
+        })
+        .state('chat', {
+            url: "/chat",
+            templateUrl: tempateURL,
+            controller: 'ChatCtrl'
         });
-    $urlRouterProvider.otherwise("/");
+    $urlRouterProvider.otherwise("/chat");
     $locationProvider.html5Mode(isproduction);
 });
 

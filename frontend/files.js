@@ -1,7 +1,7 @@
 module.exports = [
   //JS & jQuery Libs
   'bower_components/jquery/dist/jquery.min.js',
-  'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+  // 'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
   'bower_components/flexslider/jquery.flexslider-min.js',
   'bower_components/fancybox/dist/jquery.fancybox.js',
   'bower_components/smart-app-banner/smart-app-banner.js',
@@ -47,6 +47,7 @@ module.exports = [
 
   // Contorllers
   'frontend/js/controllers/controller.js',
+  'frontend/js/controllers/chat-controller.js',
   'frontend/js/controllers/header-controller.js',
   'frontend/js/controllers/language-controller.js',
 ];

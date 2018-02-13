@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="chat-header clearfix">
+        <!-- <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" /> -->
+
+        <div class="chat-about">
+            <div class="chat-with">Please enter your name</div>
+        </div>
+    </div>
+    <!--<pre>{{data|json}}</pre>-->
+    <!--<pre style="background: #b0deff;">{{formData.email|json}}</pre>-->
+    <form name="formData" class="form-group">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" ng-model="data.name" class="form-control" id="name" placeholder="Name" required name="name">
+            <div class="pull-right" ng-repeat="(field,value) in formData.name.$error" ng-show="formData.name.$touched">
+                <span class="label label-danger" ng-if="field=='required' && value">Please Enter Name</span>
+            </div>
+        </div>
+        <div class="text-center">
+            <button ng-click="submitForm()" class="btn btn-primary" ng-disabled="formData.$invalid" promise-btn>Submit</button>
+        </div>
+
+    </form>
+</div>
