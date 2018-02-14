@@ -111,13 +111,7 @@ var controller = {
                 });
             } else {
                 var botData = {};
-                // Bots.find({
-                //     user: req.body.user
-                // }).exec(function (err, result) {
-                //     _.each(result, function (n) {
-                //         botData.text = botData.text + " " + n.
-                //     });
-                // });
+
                 botData.text = req.body.text;
                 botData.user = req.body.user;
                 if (body.result.parameters) {
