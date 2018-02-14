@@ -1,7 +1,8 @@
 var schema = new Schema({
-    name: {
-        type: String
-    }
+    text: String,
+    user: String,
+    intent: {},
+    botResponse: JSON
 });
 
 schema.plugin(deepPopulate, {});
