@@ -123,10 +123,9 @@ var controller = {
 
             function checkTushar() {
                 var re = /tushar/i;
-                var found = str.match(re);
+                var found = req.body.text.match(re);
                 console.log(found);
                 if (found) {
-
                     async.waterfall([function (callback) {
                         Bots.findMatch(callback);
                     }, function (data, callback) {
