@@ -118,6 +118,7 @@ var controller = {
             }
 
             function checkTushar() {
+                console.log("Got It");
                 var re = /tushar/i;
                 var maxFind = 3;
                 var found = req.body.text.match(re);
@@ -142,9 +143,11 @@ var controller = {
 
                 } else {
                     res.callback();
+                    console.log("Socket Should be caled");
                     Bots.getAll(function (err, data) {
+                        console.log(data, err);
                         if (!_.isEmpty(data)) {
-                            sails.sockets.broadcast("chatUpdate", data);
+                            sails.sockets.blast("chatUpdate", data);
                         }
                     });
                 }
@@ -167,12 +170,8 @@ var controller = {
                     });
                 } else {
                     res.callback(null, "Removed");
-                    Bots.getAll(function (err, data) {
-                        if (!_.isEmpty(data)) {
-                            sails.sockets.broadcast("chatUpdate", data);
-                        }
-                    });
                 }
+                sails.sockets.blast("chatUpdate", []);
             });
         }
     },

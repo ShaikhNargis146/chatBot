@@ -84,7 +84,7 @@ var model = {
             callback(err, data);
             Bots.getAll(function (err, data) {
                 if (!_.isEmpty(data)) {
-                    sails.sockets.broadcast("chatUpdate", data);
+                    sails.sockets.blast("chatUpdate", data);
                 }
             });
         });
