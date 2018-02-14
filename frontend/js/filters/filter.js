@@ -18,6 +18,12 @@ myApp.filter('chatDate', function () {
   }
 });
 
+myApp.filter('correctPlace', function () {
+  return function (input) {
+    return _.startCase(input);
+  }
+});
+
 myApp.filter('indianCurrency', function () {
   return function (getNumber) {
     if (!isNaN(getNumber)) {
