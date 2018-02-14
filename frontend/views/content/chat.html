@@ -7,7 +7,7 @@
         </div>
         <!-- end chat-header -->
 
-        <div class="chat-history">
+        <div class="chat-history" id="chatbox">
             <ul class="list-unstyled">
                 <span ng-repeat="chat in allChats">
                     <li class="clearfix" ng-if="chat.user == name">
@@ -26,7 +26,7 @@
                         <div class="message-data">
                             <span class="message-data-name">
                                 <i class="fa fa-circle online"></i> {{chat.user}}</span>
-                            <span class="message-data-time">10:12 AM, Today</span>
+                            <span class="message-data-time">{{chat.createdAt | chatDate}}</span>
                         </div>
                         <div class="message my-message">
                             {{chat.text}}
