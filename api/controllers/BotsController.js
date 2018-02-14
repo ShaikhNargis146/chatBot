@@ -124,7 +124,7 @@ var controller = {
                     console.log(' Body :', body.result.parameters);
                     botData.intent = body.result.parameters;
                 }
-                if (req.body.text.includes('hey alexa')) {
+                if (req.body.text.includes('tushar')) {
                     console.log(' Body :', body.result.parameters);
                     parameters.types = body.result.parameters['type-of-locations'];
                     parameters.sensor = false;
