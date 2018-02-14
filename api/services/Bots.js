@@ -15,7 +15,7 @@ var model = {
     getAll: function (callback) {
         Bots.find().lean().exec(callback);
     },
-    findAllCity: function () {
+    findAllCity: function (callback) {
         Bots.findOne({
             $and: [{
                 "intent.geo-city": {
@@ -28,9 +28,15 @@ var model = {
             }]
         }).lean().sort({
             _id: -1
-        }).exec(callback);
+        }).exec(function (err, data) {
+            if (err) {
+                callback(err);
+            } else {
+                callback(data.intent["geo-city"]);
+            }
+        });
     },
-    findAllTypes: function () {
+    findAllTypes: function (callback) {
         Bots.findOne({
             $and: [{
                 "type-of-locations": {
@@ -43,8 +49,22 @@ var model = {
             }]
         }).lean().sort({
             _id: -1
-        }).exec(callback);
+        }).exec(function (err, data) {
+            if (err) {
+                callback(err);
+            } else {
+                callback(data.intent["type-of-locations"]);
+            }
+        });
     },
+    findMatch: function (callback) {
+        async.parallel({
+            city: function (callback) {
+
+            },
+            type: function (callback) {}
+        }, callback);
+    }
 
 };
 module.exports = _.assign(module.exports, exports, model);
