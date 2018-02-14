@@ -23,6 +23,14 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
         modalInstance.close();
     };
 
+    //  Send typed message
+
+    $scope.sendMessage = function (chatText) {
+        apiService.saveText(chatText, function (res) {
+            console.log(res);
+        });
+    }
+
     if (_.isEmpty($scope.name)) {
         $scope.usernamePopup();
     }
