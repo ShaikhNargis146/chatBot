@@ -101,6 +101,7 @@ var controller = {
             }
         };
         request(options, function (err, response1, body) {
+            console.log(err, body);
             if (err) {
                 console.log('Error :', err);
                 res.json({
@@ -111,18 +112,24 @@ var controller = {
                 });
             } else {
                 var botData = {};
-
                 botData.text = req.body.text;
                 botData.user = req.body.user;
                 if (body.result.parameters) {
                     console.log(' Body :', body.result.parameters);
                     botData.intent = body.result.parameters;
                 }
+
+                Bots.saveData(botData, checkTushar);
+
+            }
+
+            function checkTushar() {
                 if (req.body.text.includes('tushar') || req.body.text.includes('Tushar') || req.body.text.includes('TUSHAR')) {
 
                     async.waterfall([function (callback) {
                         Bots.findMatch(callback);
                     }, function (data, callback) {
+                        console.log(data);
                         var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=' + data.type + " in " + data.city + '&key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw';
 
                         https.get(url, function (response) {
@@ -142,10 +149,9 @@ var controller = {
                         });
                     }], res.callback);
 
-                } else {
-                    Bots.saveData(botData, res.callback);
                 }
             }
+
 
         });
     },
