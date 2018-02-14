@@ -29,35 +29,34 @@ var model = {
         }).lean().sort({
             _id: -1
         }).exec(function (err, data) {
-            console.log(data);
+            console.log("City", data);
             if (err || _.isEmpty(data)) {
                 callback(err);
             } else {
-
-                callback(data.intent["geo-city"]);
+                callback(null, data.intent["geo-city"]);
             }
         });
     },
     findTypeFromChat: function (callback) {
         Bots.findOne({
             $and: [{
-                "type-of-locations": {
+                "intent.type-of-locations": {
                     $exists: 1
                 }
             }, {
-                "type-of-locations": {
+                "intent.type-of-locations": {
                     $ne: ""
                 }
             }]
         }).lean().sort({
             _id: -1
         }).exec(function (err, data) {
-            console.log(data);
+            console.log("Type", data);
             if (err || _.isEmpty(data)) {
                 callback(err);
             } else {
 
-                callback(data.intent["type-of-locations"]);
+                callback(null, data.intent["type-of-locations"]);
             }
         });
     },
@@ -70,6 +69,19 @@ var model = {
                 Bots.findTypeFromChat(callback);
             }
         }, callback);
+    },
+    savePlaces: function (data, places, callback) {
+        var maxFind = 5;
+        var somePlaces = places.results.slice(0, maxFind);
+        var botObj = Bots();
+        botObj.user = Config.botName;
+        botObj.text = "You may check the following places ...";
+        botObj.botResponse = {};
+        botObj.botResponse.data = data;
+        botObj.botResponse.somePlaces = somePlaces;
+        botObj.save(function (err, data) {
+            callback(err, data);
+        });
     }
 };
 module.exports = _.assign(module.exports, exports, model);

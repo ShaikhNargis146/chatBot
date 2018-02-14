@@ -119,16 +119,13 @@ var controller = {
 
             function checkTushar() {
                 var re = /tushar/i;
+                var maxFind = 3;
                 var found = req.body.text.match(re);
-                console.log(found);
                 if (found) {
-                    console.log("Gone Inside");
                     async.waterfall([function (callback) {
                         Bots.findMatch(callback);
                     }, function (data, callback) {
-                        console.log(data);
-                        var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=' + data.type + " in " + data.city + '&key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw';
-
+                        var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=' + data.city + '&key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw&type=' + data.type;
                         https.get(url, function (response) {
                             var body = '';
                             response.on('data', function (chunk) {
@@ -137,7 +134,8 @@ var controller = {
                             response.on('end', function () {
                                 var places = JSON.parse(body);
                                 botData.botResponse = places.results;
-                                Bots.saveData(botData, callback);
+
+                                Bots.savePlaces(data, places.results);
                             });
                         }).on('error', function (e) {
                             callback(e);
