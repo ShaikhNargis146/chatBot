@@ -100,7 +100,7 @@ var controller = {
             }
         };
         request(options, function (err, response1, body) {
-            if (err) {
+            if (err || !(body.result && body.result.parameters)) {
                 res.json({
                     value: false,
                     data: {
