@@ -17,6 +17,11 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
         });
     };
 
+    io.socket.on("chatUpdate", function (data) {
+        $scope.allChats = data;
+        $scope.$apply();
+    });
+
     $scope.reloadChat = function () {
         apiService.getAll(function (data) {
             $scope.allChats = data.data.data;
@@ -36,7 +41,7 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
 
     $scope.sendMessage = function (chatText) {
         apiService.saveText(chatText, function (res) {
-            $scope.reloadChat();
+            $scope.chatText = "";
         });
     };
 
