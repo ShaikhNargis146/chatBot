@@ -132,7 +132,7 @@ var controller = {
                     parameters.location = body.result.parameters['geo-city'];
 
                     parameters.query = parameters.types + ' in ' + parameters.location;
-                    var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=' + parameters.types + '&key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw';
+                    var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=' + parameters.query + '&key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw';
                     console.log(url);
                     https.get(url, function (response) {
                         var body = '';
