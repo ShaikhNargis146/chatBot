@@ -119,29 +119,29 @@ var controller = {
                     botData.intent = body.result.parameters;
                 }
                 if (req.body.text.includes('tushar') || req.body.text.includes('Tushar') || req.body.text.includes('TUSHAR')) {
-                    console.log(' Body :', body.result.parameters);
-                    parameters.types = body.result.parameters['type-of-locations'];
-                    parameters.sensor = false;
-                    parameters.radius = 16000;
-                    parameters.location = body.result.parameters['geo-city'];
 
-                    parameters.query = parameters.types + ' in ' + parameters.location;
-                    var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=' + parameters.query + '&key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw';
-                    console.log(url);
-                    https.get(url, function (response) {
-                        var body = '';
-                        response.on('data', function (chunk) {
-                            body += chunk;
+                    asycn.waterfall([function (callback) {
+                        Bots.findMatch(callback);
+                    }, function (data, callback) {
+                        var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=' + data.type + " in " + data.city + '&key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw';
+
+                        https.get(url, function (response) {
+                            var body = '';
+                            response.on('data', function (chunk) {
+                                body += chunk;
+                            });
+                            response.on('end', function () {
+                                var places = JSON.parse(body);
+                                console.log("Got body: ", body);
+                                botData.botResponse = places.results;
+                                Bots.saveData(botData, callback);
+                            });
+                        }).on('error', function (e) {
+                            console.log("Got error: " + e.message);
+                            callback(e);
                         });
-                        response.on('end', function () {
-                            var places = JSON.parse(body);
-                            console.log("Got body: ", body);
-                            botData.botResponse = places.results;
-                            Bots.saveData(botData, res.callback);
-                        });
-                    }).on('error', function (e) {
-                        console.log("Got error: " + e.message);
-                    });
+                    }], res.callback);
+
                 } else {
                     Bots.saveData(botData, res.callback);
                 }
