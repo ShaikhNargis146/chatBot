@@ -17,10 +17,13 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
         });
     };
 
-    apiService.getAll(function (data) {
-        $scope.allChats = data.data.data;
-        console.log($scope.allChats);
-    });
+    $scope.reloadChat = function () {
+        apiService.getAll(function (data) {
+            $scope.allChats = data.data.data;
+            console.log($scope.allChats);
+        });
+    }
+    $scope.reloadChat();
 
     $scope.saveName = function (name) {
         $scope.name = name;
@@ -33,6 +36,14 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
     $scope.sendMessage = function (chatText) {
         console.log(chatText);
         apiService.saveText(chatText, function (res) {});
+    };
+
+    //  Clear the message
+
+    $scope.clearMessage = function () {
+        apiService.clearText(function (res) {
+            console.log(res);
+        });
     };
 
     if (_.isEmpty($scope.name)) {
