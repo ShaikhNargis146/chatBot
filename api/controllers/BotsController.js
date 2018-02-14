@@ -143,9 +143,7 @@ var controller = {
 
                 } else {
                     res.callback();
-                    console.log("Socket Should be caled");
                     Bots.getAll(function (err, data) {
-                        console.log(data, err);
                         if (!_.isEmpty(data)) {
                             sails.sockets.blast("chatUpdate", data);
                         }
