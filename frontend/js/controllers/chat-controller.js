@@ -1,24 +1,30 @@
-myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal) {
+myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $uibModal) {
     $scope.template = TemplateService.getHTML("content/chat.html");
     TemplateService.title = "Chat"; //This is the Title of the Website
     TemplateService.header = "";
     TemplateService.footer = "";
-    $scope.navigation = NavigationService.getNavigation();
 
+    $scope.name = $.jStorage.get("name");
+
+    $scope.navigation = NavigationService.getNavigation();
+    var modalInstance;
     $scope.usernamePopup = function () {
-        $uibModal.open({
+        modalInstance = $uibModal.open({
             templateUrl: "views/modal/name.html",
             size: "md",
             windowClass: "take-modal",
             scope: $scope
         });
+        console.log(modalInstance);
     };
 
-    $scope.usernamePopup();
+    $scope.saveName = function (name) {
+        $scope.name = name;
+        $.jStorage.set("name", name);
+        modalInstance.close();
+    };
 
-    // $timeout({
-    //     $('#myModal').on('shown.bs.modal', function () {
-    //         $('#myInput').trigger('focus')
-    //     });
-    // }, 300)
-})
+    if (_.isEmpty($scope.name)) {
+        $scope.usernamePopup();
+    }
+});
