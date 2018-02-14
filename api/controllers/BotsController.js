@@ -167,6 +167,11 @@ var controller = {
                     });
                 } else {
                     res.callback(null, "Removed");
+                    Bots.getAll(function (err, data) {
+                        if (!_.isEmpty(data)) {
+                            sails.sockets.broadcast("chatUpdate", data);
+                        }
+                    });
                 }
             });
         }
