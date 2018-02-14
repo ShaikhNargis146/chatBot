@@ -11,7 +11,7 @@ myApp.factory('apiService', function ($http, $q, $timeout) {
                 }
             }).success(callback);
         },
-        clearText: function (text, callback) {
+        clearText: function (callback) {
             $http({
                 url: adminurl + 'bots/clearText',
                 method: 'POST',
@@ -21,7 +21,7 @@ myApp.factory('apiService', function ($http, $q, $timeout) {
                 }
             }).success(callback);
         },
-        getAll: function () {
+        getAll: function (callback) {
             $http({
                 url: adminurl + 'bots/clearText',
                 method: 'POST',
