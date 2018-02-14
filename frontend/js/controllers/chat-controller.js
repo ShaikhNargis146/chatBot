@@ -51,4 +51,10 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
     if (_.isEmpty($scope.name)) {
         $scope.usernamePopup();
     }
+
+
+    $scope.goToLink = function (placeId) {
+        var url = "https://www.google.com/maps/place/?q=place_id:" + placeId;
+        window.open(url, '_blank');
+    };
 });

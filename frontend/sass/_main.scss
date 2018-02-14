@@ -356,7 +356,7 @@ body {
             color: white;
             padding: 5px 15px;
             line-height: 150%;
-            font-size: 16px;
+            font-size: 13px;
             border-radius: 7px;
             margin-bottom: 20px;
             width: 90%;
@@ -470,4 +470,10 @@ body {
 
 .modal.fade .modal-dialog {
     margin-top: 130px;
+}
+
+tr {
+    padding: 0px !important;
+    margin: 0px;
+    line-height: 150%;
 }

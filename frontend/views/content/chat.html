@@ -30,6 +30,32 @@
                         </div>
                         <div class="message my-message">
                             {{chat.text}}
+                            <div class="bot response" ng-if="chat.botResponse.data">
+                                I have found some {{chat.botResponse.data.type}} in {{chat.botResponse.data.city}}
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Address</th>
+                                            <th>Rating</th>
+                                            <th>Link</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="somePlace in chat.botResponse.somePlaces">
+                                            <td>
+                                                {{somePlace.name}}</td>
+                                            <td> {{somePlace.formatted_address}}</td>
+                                            <td> {{somePlace.rating}}</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-default" ng-click="goToLink(somePlace.place_id)">Link
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>
                     </li>
                 </span>
