@@ -77,13 +77,16 @@
         <!-- end chat-history -->
 
         <div class="chat-message clearfix">
-            <textarea name="message-to-send" id="message-to-send" placeholder="Type your message" ng-model="message.chatText" rows="3"></textarea>
+            <form>
+                <input type="text" class="form-control" placeholder="Type your message" ng-model="message.chatText">
 
-            <!-- <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
-            <i class="fa fa-file-image-o"></i> -->
+                <!-- <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
+                    <i class="fa fa-file-image-o"></i> -->
 
 
-            <button class="btn btn-custom" ng-click="sendMessage(message.chatText)">Send</button>
+                <button type="submit" class="btn btn-custom" ng-click="sendMessage(message.chatText)">Send</button>
+            </form>
+
 
         </div>
         <!-- end chat-message -->
