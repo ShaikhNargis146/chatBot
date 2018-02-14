@@ -74,7 +74,6 @@ var controller = {
 
     },
     saveText: function (req, res) {
-        console.log("query", req.body.text);
         var radius = 16000;
         var sensor = false;
         var types = "restaurant";
@@ -101,9 +100,7 @@ var controller = {
             }
         };
         request(options, function (err, response1, body) {
-            console.log(err, body);
             if (err) {
-                console.log('Error :', err);
                 res.json({
                     value: false,
                     data: {
@@ -115,7 +112,6 @@ var controller = {
                 botData.text = req.body.text;
                 botData.user = req.body.user;
                 if (body.result.parameters) {
-                    console.log(' Body :', body.result.parameters);
                     botData.intent = body.result.parameters;
                 }
                 Bots.saveData(botData, checkTushar);
@@ -129,7 +125,6 @@ var controller = {
                     async.waterfall([function (callback) {
                         Bots.findMatch(callback);
                     }, function (data, callback) {
-                        console.log(data);
                         var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=' + data.type + " in " + data.city + '&key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw';
 
                         https.get(url, function (response) {
@@ -139,12 +134,10 @@ var controller = {
                             });
                             response.on('end', function () {
                                 var places = JSON.parse(body);
-                                console.log("Got body: ", body);
                                 botData.botResponse = places.results;
                                 Bots.saveData(botData, callback);
                             });
                         }).on('error', function (e) {
-                            console.log("Got error: " + e.message);
                             callback(e);
                         });
                     }], res.callback);
