@@ -118,13 +118,14 @@ var controller = {
                     console.log(' Body :', body.result.parameters);
                     botData.intent = body.result.parameters;
                 }
-
                 Bots.saveData(botData, checkTushar);
-
             }
 
             function checkTushar() {
-                if (req.body.text.includes('tushar') || req.body.text.includes('Tushar') || req.body.text.includes('TUSHAR')) {
+                var re = /tushar/i;
+                var found = str.match(re);
+                console.log(found);
+                if (found) {
 
                     async.waterfall([function (callback) {
                         Bots.findMatch(callback);
