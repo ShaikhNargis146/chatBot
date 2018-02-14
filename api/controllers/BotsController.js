@@ -133,9 +133,7 @@ var controller = {
                             });
                             response.on('end', function () {
                                 var places = JSON.parse(body);
-                                botData.botResponse = places.results;
-
-                                Bots.savePlaces(data, places.results);
+                                Bots.savePlaces(data, places.results, res.callback);
                             });
                         }).on('error', function (e) {
                             callback(e);

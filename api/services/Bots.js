@@ -72,7 +72,7 @@ var model = {
     },
     savePlaces: function (data, places, callback) {
         var maxFind = 5;
-        var somePlaces = places.results.slice(0, maxFind);
+        var somePlaces = places.slice(0, maxFind);
         var botObj = Bots();
         botObj.user = Config.botName;
         botObj.text = "You may check the following places ...";
