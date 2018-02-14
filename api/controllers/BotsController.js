@@ -111,13 +111,20 @@ var controller = {
                 });
             } else {
                 var botData = {};
+                // Bots.find({
+                //     user: req.body.user
+                // }).exec(function (err, result) {
+                //     _.each(result, function (n) {
+                //         botData.text = botData.text + " " + n.
+                //     });
+                // });
                 botData.text = req.body.text;
                 botData.user = req.body.user;
                 if (body.result.parameters) {
                     console.log(' Body :', body.result.parameters);
                     botData.intent = body.result.parameters;
                 }
-                if (req.body.text.includes('Hey Alexa')) {
+                if (req.body.text.includes('hey alexa')) {
                     console.log(' Body :', body.result.parameters);
                     parameters.types = body.result.parameters['type-of-locations'];
                     parameters.sensor = false;
@@ -125,7 +132,7 @@ var controller = {
                     parameters.location = body.result.parameters['geo-city'];
 
                     parameters.query = parameters.types + ' in ' + parameters.location;
-                    var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=' + parameters.query + '&key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw';
+                    var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=' + parameters.types + '&key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw';
                     console.log(url);
                     https.get(url, function (response) {
                         var body = '';
