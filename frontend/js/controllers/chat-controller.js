@@ -19,6 +19,7 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
 
     apiService.getAll(function (data) {
         $scope.allChats = data.data.data;
+        console.log($scope.allChats);
     });
 
     $scope.saveName = function (name) {
