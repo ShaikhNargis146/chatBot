@@ -9,7 +9,7 @@ myApp.factory('apiService', function ($http, $q, $timeout) {
                     user: $.jStorage.get("name"),
                     text: text
                 }
-            }).success(callback);
+            }).then(callback);
         },
         clearText: function (callback) {
             $http({
@@ -19,17 +19,17 @@ myApp.factory('apiService', function ($http, $q, $timeout) {
                     user: $.jStorage.get("name"),
                     text: "clear all"
                 }
-            }).success(callback);
+            }).then(callback);
         },
         getAll: function (callback) {
             $http({
-                url: adminurl + 'bots/clearText',
+                url: adminurl + 'bots/getAll',
                 method: 'POST',
                 data: {
                     user: $.jStorage.get("name"),
                     text: "clear all"
                 }
-            }).success(callback);
+            }).then(callback);
         }
         // This is a demo Service for POST Method.
     };

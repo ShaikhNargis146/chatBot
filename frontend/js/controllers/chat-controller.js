@@ -17,6 +17,10 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
         });
     };
 
+    apiService.getAll(function (data) {
+        console.log(data);
+    });
+
     $scope.saveName = function (name) {
         $scope.name = name;
         $.jStorage.set("name", name);
