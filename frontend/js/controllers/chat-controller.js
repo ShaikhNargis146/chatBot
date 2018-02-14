@@ -20,7 +20,8 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
     $scope.reloadChat = function () {
         apiService.getAll(function (data) {
             $scope.allChats = data.data.data;
-            console.log($scope.allChats);
+            $('#chatbox').scrollTop($('#chatbox').scrollHeight);
+
         });
     }
     $scope.reloadChat();
@@ -34,8 +35,9 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
     //  Send typed message
 
     $scope.sendMessage = function (chatText) {
-        console.log(chatText);
-        apiService.saveText(chatText, function (res) {});
+        apiService.saveText(chatText, function (res) {
+            $scope.reloadChat();
+        });
     };
 
     //  Clear the message
