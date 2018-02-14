@@ -11,5 +11,9 @@ schema.plugin(timestamps);
 module.exports = mongoose.model('Bots', schema);
 
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
-var model = {};
+var model = {
+    getAll: function (callback) {
+        Bots.find().lean().exec(callback);
+    }
+};
 module.exports = _.assign(module.exports, exports, model);

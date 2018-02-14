@@ -165,6 +165,9 @@ var controller = {
                 }
             });
         }
+    },
+    getAll: function (req, res) {
+        Bots.getAll(res.callback);
     }
 };
 
