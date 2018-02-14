@@ -148,7 +148,6 @@ var controller = {
 
         });
     },
-
     clearText: function (req, res) {
         console.log("query", req.body.text);
         if (req.body.text == "clear all") {
@@ -167,7 +166,6 @@ var controller = {
             });
         }
     }
-
 };
 
 module.exports = _.assign(module.exports, controller);
