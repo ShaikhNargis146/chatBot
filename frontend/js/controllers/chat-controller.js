@@ -21,6 +21,7 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
 
     io.socket.on("chatUpdate", function (data) {
         $scope.allChats = data;
+        console.log(data);
         $scope.$apply();
     });
 
