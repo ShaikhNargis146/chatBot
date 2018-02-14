@@ -1,6 +1,5 @@
 myApp.factory('apiService', function ($http, $q, $timeout) {
     return {
-
         // This is a demo Service for POST Method.
         getDemo: function (formData, callback) {
             $http({
@@ -30,7 +29,5 @@ myApp.factory('apiService', function ($http, $q, $timeout) {
             }).success(callback);
         }
         // This is a demo Service for POST Method.
-
-
     };
 });
