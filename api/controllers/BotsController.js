@@ -102,7 +102,7 @@ var controller = {
         };
         request(options, function (err, response1, body) {
             console.log(err, body);
-            if (err) {
+            if (err || !(body.result && body.result.parameters)) {
                 console.log('Error :', err);
                 res.json({
                     value: false,
