@@ -29,10 +29,11 @@ var model = {
         }).lean().sort({
             _id: -1
         }).exec(function (err, data) {
+            console.log(data);
             if (err || _.isEmpty(data)) {
                 callback(err);
             } else {
-                console.log(data);
+
                 callback(data.intent["geo-city"]);
             }
         });
@@ -51,10 +52,11 @@ var model = {
         }).lean().sort({
             _id: -1
         }).exec(function (err, data) {
+            console.log(data);
             if (err || _.isEmpty(data)) {
                 callback(err);
             } else {
-                console.log(data);
+
                 callback(data.intent["type-of-locations"]);
             }
         });
