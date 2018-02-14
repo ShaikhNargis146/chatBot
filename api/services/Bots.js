@@ -29,7 +29,7 @@ var model = {
         }).lean().sort({
             _id: -1
         }).exec(function (err, data) {
-            if (err) {
+            if (err || _.isEmpty(data)) {
                 callback(err);
             } else {
                 callback(data.intent["geo-city"]);
@@ -50,7 +50,7 @@ var model = {
         }).lean().sort({
             _id: -1
         }).exec(function (err, data) {
-            if (err) {
+            if (err || _.isEmpty(data)) {
                 callback(err);
             } else {
                 callback(data.intent["type-of-locations"]);
