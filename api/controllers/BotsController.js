@@ -120,7 +120,7 @@ var controller = {
                 }
                 if (req.body.text.includes('tushar') || req.body.text.includes('Tushar') || req.body.text.includes('TUSHAR')) {
 
-                    asycn.waterfall([function (callback) {
+                    async.waterfall([function (callback) {
                         Bots.findMatch(callback);
                     }, function (data, callback) {
                         var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=' + data.type + " in " + data.city + '&key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw';
