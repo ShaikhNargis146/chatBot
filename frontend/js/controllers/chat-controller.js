@@ -1,4 +1,4 @@
-myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $uibModal) {
+myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $uibModal, apiService) {
     $scope.template = TemplateService.getHTML("content/chat.html");
     TemplateService.title = "Chat"; //This is the Title of the Website
     TemplateService.header = "";
@@ -15,7 +15,6 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
             windowClass: "take-modal",
             scope: $scope
         });
-        console.log(modalInstance);
     };
 
     $scope.saveName = function (name) {
