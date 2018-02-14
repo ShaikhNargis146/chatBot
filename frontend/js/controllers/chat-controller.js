@@ -18,7 +18,7 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
     };
 
     apiService.getAll(function (data) {
-        console.log(data);
+        $scope.allChats = data.data.data;
     });
 
     $scope.saveName = function (name) {
@@ -30,10 +30,9 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
     //  Send typed message
 
     $scope.sendMessage = function (chatText) {
-        apiService.saveText(chatText, function (res) {
-            console.log(res);
-        });
-    }
+        console.log(chatText);
+        apiService.saveText(chatText, function (res) {});
+    };
 
     if (_.isEmpty($scope.name)) {
         $scope.usernamePopup();
