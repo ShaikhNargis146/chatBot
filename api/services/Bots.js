@@ -15,7 +15,7 @@ var model = {
     getAll: function (callback) {
         Bots.find().lean().exec(callback);
     },
-    findAllCity: function (callback) {
+    findCityFromChat: function (callback) {
         Bots.findOne({
             $and: [{
                 "intent.geo-city": {
@@ -36,7 +36,7 @@ var model = {
             }
         });
     },
-    findAllTypes: function (callback) {
+    findTypeFromChat: function (callback) {
         Bots.findOne({
             $and: [{
                 "type-of-locations": {
@@ -60,11 +60,12 @@ var model = {
     findMatch: function (callback) {
         async.parallel({
             city: function (callback) {
-
+                Bots.findCityFromChat(callback);
             },
-            type: function (callback) {}
+            type: function (callback) {
+                Bots.findTypeFromChat(callback);
+            }
         }, callback);
     }
-
 };
 module.exports = _.assign(module.exports, exports, model);
