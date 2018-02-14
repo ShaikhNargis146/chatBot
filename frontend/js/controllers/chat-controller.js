@@ -4,6 +4,8 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
     TemplateService.header = "";
     TemplateService.footer = "";
 
+    $scope.message = {};
+
     $scope.name = $.jStorage.get("name");
 
     $scope.navigation = NavigationService.getNavigation();
@@ -42,7 +44,7 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
 
     $scope.sendMessage = function (chatText) {
         apiService.saveText(chatText, function (res) {
-            $scope.chatText = "";
+            $scope.message.chatText = "";
         });
     };
 
