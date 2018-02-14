@@ -142,6 +142,11 @@ var controller = {
 
                 } else {
                     res.callback();
+                    Bots.getAll(function (err, data) {
+                        if (!_.isEmpty(data)) {
+                            sails.sockets.broadcast("chatUpdate", data);
+                        }
+                    });
                 }
             }
 

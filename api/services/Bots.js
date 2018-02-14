@@ -14,6 +14,7 @@ var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
 var model = {
     getAll: function (callback) {
         Bots.find().lean().exec(callback);
+
     },
     findCityFromChat: function (callback) {
         Bots.findOne({
@@ -81,6 +82,11 @@ var model = {
         botObj.botResponse.somePlaces = somePlaces;
         botObj.save(function (err, data) {
             callback(err, data);
+            Bots.getAll(function (err, data) {
+                if (!_.isEmpty(data)) {
+                    sails.sockets.broadcast("chatUpdate", data);
+                }
+            });
         });
     }
 };
