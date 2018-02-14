@@ -58,6 +58,7 @@ var model = {
         });
     },
     findMatch: function (callback) {
+        console.log("Done");
         async.parallel({
             city: function (callback) {
                 Bots.findCityFromChat(callback);
