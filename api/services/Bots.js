@@ -32,6 +32,7 @@ var model = {
             if (err || _.isEmpty(data)) {
                 callback(err);
             } else {
+                console.log(data);
                 callback(data.intent["geo-city"]);
             }
         });
@@ -53,12 +54,12 @@ var model = {
             if (err || _.isEmpty(data)) {
                 callback(err);
             } else {
+                console.log(data);
                 callback(data.intent["type-of-locations"]);
             }
         });
     },
     findMatch: function (callback) {
-        console.log("Done");
         async.parallel({
             city: function (callback) {
                 Bots.findCityFromChat(callback);
