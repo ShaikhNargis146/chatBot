@@ -12,6 +12,7 @@ module.exports = function (data, options) {
         description: data.description,
         keywords: data.keywords,
         adminurl: env.realHost + "/api/",
+        adminUUU: env.realHost,
         image: env.realHost + "/api/download/" + data.image,
         url: env.realHost + req.path,
     });

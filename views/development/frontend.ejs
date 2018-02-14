@@ -14,9 +14,11 @@
     <link rel="shortcut icon" href="img/favicon.ico" />
 
     <title ng-bind="'Node Framework | '+template.title"></title>
-    <script src="http://wohlig.io:1337/js/dependencies/sails.io.js"></script>
+    <script src="<%= ((typeof adminUUU) == "undefined") ? "" : adminUUU  %>/js/dependencies/sails.io.js"></script>
     <script>
-      io.sails.url = "http://wohlig.io:1337";
+      var adminUUU = "<%= ((typeof adminUUU) == "undefined") ? "" : adminUUU  %>";
+      var adminurl = "<%= ((typeof adminurl) == "undefined") ? "" : adminurl  %>";
+      io.sails.url = adminUUU;
     </script>
 
     <!--[if IE]> <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script> <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script> <![endif]-->
