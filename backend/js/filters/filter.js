@@ -140,21 +140,21 @@ myApp.filter('capitalize', function () {
 
 
 myApp.filter('indianCurrency', function () {
-  return function (getNumber) {
-    if (!isNaN(getNumber)) {
-      var numberArr = getNumber.toString().split('.');
-      var lastThreeDigits = numberArr[0].substring(numberArr[0].length - 3);
-      var otherDigits = numberArr[0].substring(0, numberArr[0].length - 3);
-      if (otherDigits != '') {
-        lastThreeDigits = ',' + lastThreeDigits;
-      }
-      var finalNumber = otherDigits.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThreeDigits;
-      if (numberArr.length > 1) {
-        var getRoundedDecimal = parseInt(numberArr[1].substring(0, 2)) + 1;
-        finalNumber += "." + getRoundedDecimal;
-      }
-      // return '₹' + finalNumber;
-      return finalNumber;
+    return function (getNumber) {
+        if (!isNaN(getNumber)) {
+            var numberArr = getNumber.toString().split('.');
+            var lastThreeDigits = numberArr[0].substring(numberArr[0].length - 3);
+            var otherDigits = numberArr[0].substring(0, numberArr[0].length - 3);
+            if (otherDigits != '') {
+                lastThreeDigits = ',' + lastThreeDigits;
+            }
+            var finalNumber = otherDigits.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThreeDigits;
+            if (numberArr.length > 1) {
+                var getRoundedDecimal = parseInt(numberArr[1].substring(0, 2)) + 1;
+                finalNumber += "." + getRoundedDecimal;
+            }
+            // return '₹' + finalNumber;
+            return finalNumber;
+        }
     }
-  }
 });

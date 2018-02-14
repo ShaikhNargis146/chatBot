@@ -31,7 +31,7 @@
                         <div class="message my-message">
                             {{chat.text}}
                             <div class="bot response" ng-if="chat.botResponse.data">
-                                I have found some {{chat.botResponse.data.type}} in {{chat.botResponse.data.city}}
+                                I have found some {{chat.botResponse.data.type|correctPlace}} in {{chat.botResponse.data.city}}
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>

@@ -15,13 +15,13 @@ myApp.filter('myFilter', function () {
 myApp.filter('chatDate', function () {
   return function (input) {
     return moment(input).calendar();
-  }
+  };
 });
 
 myApp.filter('correctPlace', function () {
   return function (input) {
     return _.startCase(input);
-  }
+  };
 });
 
 myApp.filter('indianCurrency', function () {
