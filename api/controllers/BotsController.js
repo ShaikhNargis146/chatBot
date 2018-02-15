@@ -136,8 +136,8 @@ var controller = {
                 }
 
                 function checkTushar() {
-                    console.log("Got It");
-                    var re = /tushar/i;
+
+                    var re = RegExp(Config.botName, "i");
                     var maxFind = 3;
                     var found = req.body.text.match(re);
                     if (found) {
