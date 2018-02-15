@@ -32,7 +32,7 @@ var model = {
         }).exec(function (err, data) {
             console.log("City", data);
             if (err || _.isEmpty(data)) {
-                callback(err);
+                callback(null, "Pune");
             } else {
                 callback(null, data.intent["geo-city"]);
             }
@@ -54,7 +54,7 @@ var model = {
         }).exec(function (err, data) {
             console.log("Type", data);
             if (err || _.isEmpty(data)) {
-                callback(err);
+                callback(null, "restaurant");
             } else {
 
                 callback(null, data.intent["type-of-locations"]);
