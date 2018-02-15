@@ -10534,6 +10534,10 @@ tr {
   margin: 0px;
   line-height: 150%; }
 
+.table td,
+.table th {
+  padding: 2px 10px !important; }
+
 #fancybox-loading,
 .fancybox-close,
 .fancybox-next span,
