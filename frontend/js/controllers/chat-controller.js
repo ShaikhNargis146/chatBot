@@ -54,9 +54,9 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
     //  Send typed message
 
     $scope.sendMessage = function (chatText) {
-        apiService.saveText(chatText, function (res) {
-            $scope.message.chatText = "";
-        });
+
+        apiService.saveText(chatText, function (res) {});
+        $scope.message.chatText = "";
     };
 
     //  Clear the message
