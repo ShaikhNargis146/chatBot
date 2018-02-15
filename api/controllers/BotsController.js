@@ -85,7 +85,20 @@ var controller = {
 
 
         if (req.body.text == "Clear Chat") {
-
+            Bots.remove({}, function (err, response) {
+                if (err) {
+                    console.log('Error :', err);
+                    res.json({
+                        value: false,
+                        data: {
+                            message: "Invalid Request"
+                        }
+                    });
+                } else {
+                    res.callback(null, "Removed");
+                }
+                sails.sockets.blast("chatUpdate", []);
+            });
         } else {
             var queryBody = {
                 "contexts": [],
