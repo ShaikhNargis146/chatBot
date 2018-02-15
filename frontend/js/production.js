@@ -68691,6 +68691,16 @@ myApp.filter('correctPlace', function () {
   };
 });
 
+myApp.filter('mergeArrayToString', function () {
+  return function (input) {
+    if (_.isArray(input)) {
+      return _.join(input, " ");
+    } else {
+      return input;
+    }
+  };
+});
+
 myApp.filter('indianCurrency', function () {
   return function (getNumber) {
     if (!isNaN(getNumber)) {
