@@ -55,7 +55,6 @@ var model = {
             if (err || _.isEmpty(data)) {
                 callback(null, "restaurant");
             } else {
-
                 callback(null, data.intent["type-of-locations"]);
             }
         });
