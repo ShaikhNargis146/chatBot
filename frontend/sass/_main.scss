@@ -374,6 +374,26 @@ body {
                 border-width: 8px;
             }
         }
+        .tui-bot {
+            .my-message {
+                background: #ff4747;
+                &:after {
+                    bottom: 100%;
+                    left: 7%;
+                    border: solid transparent;
+                    content: " ";
+                    height: 0;
+                    width: 0;
+                    position: absolute;
+                    pointer-events: none;
+                    border-bottom-color: #ff4747;
+                    border-width: 8px;
+                }
+            }
+            .online {
+                color: #ff4747;
+            }
+        }
         .my-message {
             background: $green;
         }
