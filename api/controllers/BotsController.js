@@ -82,77 +82,84 @@ var controller = {
         var https = require('https');
         var parameters = {};
         parameters.key = 'AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw';
-        var queryBody = {
-            "contexts": [],
-            "lang": "en",
-            "query": req.body.text,
-            "sessionId": "12345",
-            "timezone": "America/New_York"
-        };
-        var options = {
-            method: 'post',
-            body: queryBody, // Javascript object
-            json: true, // Use,If you are sending JSON data
-            url: baseUrl + 'query?v=20150910',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer 6a45d07194ea44deafe1da15f020c71b'
-            }
-        };
-        request(options, function (err, response1, body) {
-            if (err || !(body.result && body.result.parameters)) {
-                res.json({
-                    value: false,
-                    data: {
-                        message: "Invalid Request"
-                    }
-                });
-            } else {
-                var botData = {};
-                botData.text = req.body.text;
-                botData.user = req.body.user;
-                if (body.result.parameters) {
-                    botData.intent = body.result.parameters;
+
+
+        if (req.body.text == "Clear Chat") {
+
+        } else {
+            var queryBody = {
+                "contexts": [],
+                "lang": "en",
+                "query": req.body.text,
+                "sessionId": "12345",
+                "timezone": "America/New_York"
+            };
+            var options = {
+                method: 'post',
+                body: queryBody, // Javascript object
+                json: true, // Use,If you are sending JSON data
+                url: baseUrl + 'query?v=20150910',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer 6a45d07194ea44deafe1da15f020c71b'
                 }
-                Bots.saveData(botData, checkTushar);
-            }
-
-            function checkTushar() {
-                console.log("Got It");
-                var re = /tushar/i;
-                var maxFind = 3;
-                var found = req.body.text.match(re);
-                if (found) {
-                    async.waterfall([function (callback) {
-                        Bots.findMatch(callback);
-                    }, function (data, callback) {
-                        var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=' + data.city + '&key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw&type=' + data.type;
-                        https.get(url, function (response) {
-                            var body = '';
-                            response.on('data', function (chunk) {
-                                body += chunk;
-                            });
-                            response.on('end', function () {
-                                var places = JSON.parse(body);
-                                Bots.savePlaces(data, places.results, res.callback);
-                            });
-                        }).on('error', function (e) {
-                            callback(e);
-                        });
-                    }], res.callback);
-
-                } else {
-                    res.callback();
-                    Bots.getAll(function (err, data) {
-                        if (!_.isEmpty(data)) {
-                            sails.sockets.blast("chatUpdate", data);
+            };
+            request(options, function (err, response1, body) {
+                if (err || !(body.result && body.result.parameters)) {
+                    res.json({
+                        value: false,
+                        data: {
+                            message: "Invalid Request"
                         }
                     });
+                } else {
+                    var botData = {};
+                    botData.text = req.body.text;
+                    botData.user = req.body.user;
+                    if (body.result.parameters) {
+                        botData.intent = body.result.parameters;
+                    }
+                    Bots.saveData(botData, checkTushar);
                 }
-            }
+
+                function checkTushar() {
+                    console.log("Got It");
+                    var re = /tushar/i;
+                    var maxFind = 3;
+                    var found = req.body.text.match(re);
+                    if (found) {
+                        async.waterfall([function (callback) {
+                            Bots.findMatch(callback);
+                        }, function (data, callback) {
+                            var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=' + data.city + '&key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw&type=' + data.type;
+                            https.get(url, function (response) {
+                                var body = '';
+                                response.on('data', function (chunk) {
+                                    body += chunk;
+                                });
+                                response.on('end', function () {
+                                    var places = JSON.parse(body);
+                                    Bots.savePlaces(data, places.results, res.callback);
+                                });
+                            }).on('error', function (e) {
+                                callback(e);
+                            });
+                        }], res.callback);
+
+                    } else {
+                        res.callback();
+                        Bots.getAll(function (err, data) {
+                            if (!_.isEmpty(data)) {
+                                sails.sockets.blast("chatUpdate", data);
+                            }
+                        });
+                    }
+                }
 
 
-        });
+            });
+        }
+
     },
     clearText: function (req, res) {
         console.log("query", req.body.text);
