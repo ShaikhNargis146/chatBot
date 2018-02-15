@@ -482,3 +482,8 @@ tr {
 .table th {
     padding: 2px 10px !important;
 }
+
+input.form-control {
+    border: none;
+    border-radius: 6px;
+}
