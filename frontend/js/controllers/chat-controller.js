@@ -21,17 +21,28 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
 
     io.socket.on("chatUpdate", function (data) {
         $scope.allChats = data;
-        console.log(data);
+        scrollBottom();
         $scope.$apply();
     });
+
+
+
+    function scrollBottom() {
+        $timeout(function () {
+            $(".chat-history").animate({
+                scrollTop: $(".chat-history ul").height() -
+                    $(".chat-history").height()
+            }, 400);
+        }, 300);
+    };
+
 
     $scope.reloadChat = function () {
         apiService.getAll(function (data) {
             $scope.allChats = data.data.data;
-            $('#chatbox').scrollTop($('#chatbox').scrollHeight);
-
+            scrollBottom();
         });
-    }
+    };
     $scope.reloadChat();
 
     $scope.saveName = function (name) {
