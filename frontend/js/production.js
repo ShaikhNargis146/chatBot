@@ -68867,7 +68867,7 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
                     $(".chat-history").height()
             }, 400);
         }, 300);
-    };
+    }
 
 
     $scope.reloadChat = function () {
