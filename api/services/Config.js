@@ -26,7 +26,7 @@ module.exports = mongoose.model('Config', schema);
 
 var models = {
     maxRow: 10,
-    botName: "Tushar",
+    botName: "TUI",
     getForeignKeys: function (schema) {
         var arr = [];
         _.each(schema.tree, function (n, name) {
