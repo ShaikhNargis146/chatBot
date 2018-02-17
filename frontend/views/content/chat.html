@@ -95,3 +95,100 @@
 
 </div>
 <!-- end container -->
+
+<div class="page whatsapp">
+    <div class="marvel-device nexus5">
+        <div class="top-bar"></div>
+        <div class="sleep"></div>
+        <div class="volume"></div>
+        <div class="camera"></div>
+        <div class="screen">
+            <div class="screen-container">
+                <div class="status-bar">
+                    <div class="time">{{deviceTime}}</div>
+                    <div class="battery">
+                        <i class="zmdi zmdi-battery"></i>
+                    </div>
+                    <div class="network">
+                        <i class="zmdi zmdi-network"></i>
+                    </div>
+                    <div class="wifi">
+                        <i class="zmdi zmdi-wifi-alt-2"></i>
+                    </div>
+                    <div class="star">
+                        <i class="zmdi zmdi-star"></i>
+                    </div>
+                </div>
+                <div class="chat">
+                    <div class="chat-container">
+                        <div class="user-bar">
+                            <div class="avatar">
+                                <img src="frontend/img/tui-logo.jpg" alt="Avatar">
+                            </div>
+                            <div class="name">
+                                <span>Group Chat</span>
+                                <span class="status">online</span>
+                            </div>
+                        </div>
+                        <div class="conversation">
+                            <div class="conversation-container">
+
+                                <div class="conversation-height">
+
+                                    <div class="message  color-{{chat.user|lowercase}}" ng-class="{'sent': chat.user == name, 'received': chat.user != name}"
+                                        ng-repeat="chat in allChats">
+                                        <!-- User name -->
+                                        <span class="user-name">{{chat.user}}</span>
+
+                                        <!-- Chat text -->
+                                        <span class="chat-text" ng-bind-html="chat.text"></span>
+
+                                        <!-- Response suggestion -->
+                                        <div class="chat-text" ng-if="chat.botResponse.data">
+                                            I have found some {{chat.botResponse.data.type|correctPlace}} in {{chat.botResponse.data.city|mergeArrayToString}}
+
+                                            <div class="recommendation-cards">
+                                                <div class="card-stack" ng-repeat="somePlace in chat.botResponse.somePlaces" ng-click="goToLink(somePlace.place_id)">
+                                                    <div class="card-name">{{somePlace.name}}</div>
+                                                    <div class="card-rating" uib-rating ng-model="somePlace.rating" max="max" read-only="isReadOnly"></div>
+                                                    <div class="card-addr">{{somePlace.formatted_address}}</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <span class="metadata">
+                                            <span class="time">{{chat.createdAt | chatDate}}</span>
+                                            <span class="tick">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" id="msg-dblcheck-ack" x="2063" y="2076">
+                                                    <path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.88a.32.32 0 0 1-.484.032l-.358-.325a.32.32 0 0 0-.484.032l-.378.48a.418.418 0 0 0 .036.54l1.32 1.267a.32.32 0 0 0 .484-.034l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.88a.32.32 0 0 1-.484.032L1.892 7.77a.366.366 0 0 0-.516.005l-.423.433a.364.364 0 0 0 .006.514l3.255 3.185a.32.32 0 0 0 .484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"
+                                                        fill="#4fc3f7" />
+                                                </svg>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                            </div>
+                            <form class="conversation-compose">
+                                <div class="emoji">
+
+                                </div>
+                                <input class="input-msg" ng-model="message.chatText" name="input" placeholder="Type a message" autocomplete="off" autofocus></input>
+
+                                <div class="photo">
+
+                                </div>
+                                <button class="send" ng-click="sendMessage(message.chatText)">
+                                    <div class="circle">
+                                        <i class="zmdi zmdi-mail-send"></i>
+                                    </div>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
