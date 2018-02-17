@@ -23,7 +23,7 @@ module.exports = function (grunt) {
       dest: folderName + '/css/production.css'
     },
     options: {
-      processImport: false
+      inline: false
     }
   });
 
