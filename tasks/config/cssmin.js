@@ -21,6 +21,9 @@ module.exports = function (grunt) {
     production: {
       src: [folderName + '/css/import.css'],
       dest: folderName + '/css/production.css'
+    },
+    options: {
+      inline: false
     }
   });
 

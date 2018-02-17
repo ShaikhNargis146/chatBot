@@ -23,7 +23,6 @@
     "grunt-contrib-coffee": "^1.0.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-cssmin": "^2.2.1",
     "grunt-contrib-jst": "^1.0.0",
     "grunt-contrib-less": "^1.4.1",
     "grunt-contrib-uglify": "^3.3.0",
@@ -86,6 +85,7 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "grunt-browser-sync": "^2.2.0",
+    "grunt-contrib-cssmin": "^2.2.1",
     "grunt-contrib-htmlmin": "^2.4.0",
     "grunt-ejs-compile": "^0.0.1",
     "grunt-ejs-locals": "^0.1.1",
