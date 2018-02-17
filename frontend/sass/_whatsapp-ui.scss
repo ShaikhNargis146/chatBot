@@ -42,355 +42,338 @@ body {
     justify-content: center;
 }
 
-.whatsapp {
-    .marvel-device .screen {
-        text-align: left;
-    }
-    .screen-container {
-        height: 100%;
-    }
-    /* Status Bar */
-    .status-bar {
-        height: 25px;
-        background: $status-bar;
-        color: #fff;
-        font-size: 14px;
-        padding: 0 8px;
-        &:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-        div {
-            float: right;
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-            margin: 0 0 0 8px;
-            font-weight: 600;
-        }
-    }
-    /* Chat */
-    .chat {
-        height: calc(100% - 69px);
-    }
-    .chat-container {
-        height: 100%;
-    }
-    /* User Bar */
-    .user-bar {
-        height: 55px;
-        background: $user-bar;
-        color: #fff;
-        padding: 0 8px;
-        font-size: 24px;
-        position: relative;
-        z-index: 1;
-        box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35);
-        &:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-        div {
-            float: left;
-            transform: translateY(-50%);
-            position: relative;
-            top: 50%;
-        }
-        .actions {
-            float: right;
-            margin: 0 0 0 20px;
-            &.more {
-                margin: 0 12px 0 32px;
-            }
-            &.attachment {
-                margin: 0 0 0 30px;
-                i {
-                    display: block;
-                    transform: rotate(-45deg);
-                }
-            }
-        }
-        .avatar {
-            margin: 0 0 0 5px;
-            width: 36px;
-            height: 36px;
-            img {
-                border-radius: 50%;
-                box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
-                display: block;
-                width: 100%;
-            }
-        }
-        .name {
-            font-size: 17px;
-            font-weight: 600;
-            text-overflow: ellipsis;
-            letter-spacing: 0.3px;
-            margin: 0 0 0 8px;
-            overflow: hidden;
-            white-space: nowrap;
-            width: 110px;
-        }
-        .status {
-            display: block;
-            font-size: 13px;
-            font-weight: 400;
-            letter-spacing: 0;
-        }
-    }
-    /* Conversation */
-    .conversation {
-        height: calc(100% - 12px);
-        position: relative;
-        background: #efe7dd url("https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg") repeat;
-        z-index: 0;
-        ::-webkit-scrollbar {
-            transition: all .5s;
-            width: 5px;
-            height: 1px;
-            z-index: 10;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #b3ada7;
-        }
-        .conversation-container {
-            height: calc(100% - 68px);
-            overflow-x: hidden;
-            padding: 0 16px;
-            margin-bottom: 5px;
-            &:after {
-                content: "";
-                display: table;
-                clear: both;
-            }
-        }
-    }
-    /* Messages */
-    .message {
-        color: #000;
+.marvel-device .screen {
+    text-align: left;
+}
+
+.screen-container {
+    height: 100%;
+}
+
+/* Status Bar */
+
+.status-bar {
+    height: 25px;
+    background: $status-bar;
+    color: #fff;
+    font-size: 14px;
+    padding: 0 8px;
+    &:after {
+        content: "";
+        display: table;
         clear: both;
-        line-height: 18px;
-        font-size: 15px;
-        padding: 8px;
-        position: relative;
-        margin: 8px 0;
-        max-width: 85%;
-        word-wrap: break-word;
-        z-index: 0;
-        &:after {
-            position: absolute;
-            content: "";
-            width: 0;
-            height: 0;
-            border-style: solid;
-        }
     }
-    .metadata {
-        display: inline-block;
+    div {
         float: right;
-        padding: 0 0 0 7px;
         position: relative;
-        bottom: -4px;
-        .time {
-            color: rgba(0, 0, 0, 0.45);
-            font-size: 11px;
-            display: inline-block;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0 0 0 8px;
+        font-weight: 600;
+    }
+}
+
+/* Chat */
+
+.chat {
+    height: calc(100% - 69px);
+}
+
+.chat-container {
+    height: 100%;
+}
+
+/* User Bar */
+
+.user-bar {
+    height: 55px;
+    background: $user-bar;
+    color: #fff;
+    padding: 0 8px;
+    font-size: 24px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35);
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    div {
+        float: left;
+        transform: translateY(-50%);
+        position: relative;
+        top: 50%;
+    }
+    .actions {
+        float: right;
+        margin: 0 0 0 20px;
+        &.more {
+            margin: 0 12px 0 32px;
         }
-        .tick {
-            display: inline-block;
-            margin-left: 2px;
-            position: relative;
-            top: 4px;
-            height: 16px;
-            width: 16px;
-            svg {
-                position: absolute;
-                transition: .5s ease-in-out;
-                &:first-child {
-                    -webkit-backface-visibility: hidden;
-                    backface-visibility: hidden;
-                    -webkit-transform: perspective(800px) rotateY(180deg);
-                    transform: perspective(800px) rotateY(180deg);
-                }
-                &:last-child {
-                    -webkit-backface-visibility: hidden;
-                    backface-visibility: hidden;
-                    -webkit-transform: perspective(800px) rotateY(0deg);
-                    transform: perspective(800px) rotateY(0deg);
-                }
+        &.attachment {
+            margin: 0 0 0 30px;
+            i {
+                display: block;
+                transform: rotate(-45deg);
             }
         }
-        .tick-animation svg {
+    }
+    .avatar {
+        margin: 0 0 0 5px;
+        width: 36px;
+        height: 36px;
+        img {
+            border-radius: 50%;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+            display: block;
+            width: 100%;
+        }
+    }
+    .name {
+        font-size: 17px;
+        font-weight: 600;
+        text-overflow: ellipsis;
+        letter-spacing: 0.3px;
+        margin: 0 0 0 8px;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 110px;
+    }
+    .status {
+        display: block;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 0;
+    }
+}
+
+/* Conversation */
+
+.conversation {
+    height: calc(100% - 12px);
+    position: relative;
+    background: #efe7dd url("https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg") repeat;
+    z-index: 0;
+    ::-webkit-scrollbar {
+        transition: all .5s;
+        width: 5px;
+        height: 1px;
+        z-index: 10;
+    }
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #b3ada7;
+    }
+    .conversation-container {
+        height: calc(100% - 68px);
+        overflow-x: hidden;
+        padding: 0 16px;
+        margin-bottom: 5px;
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    }
+}
+
+/* Messages */
+
+.message {
+    color: #000;
+    clear: both;
+    line-height: 18px;
+    font-size: 15px;
+    padding: 8px;
+    position: relative;
+    margin: 8px 0;
+    max-width: 85%;
+    word-wrap: break-word;
+    z-index: 0;
+    &:after {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 0;
+        border-style: solid;
+    }
+}
+
+.metadata {
+    display: inline-block;
+    float: right;
+    padding: 0 0 0 7px;
+    position: relative;
+    bottom: -4px;
+    .time {
+        color: rgba(0, 0, 0, 0.45);
+        font-size: 11px;
+        display: inline-block;
+    }
+    .tick {
+        display: inline-block;
+        margin-left: 2px;
+        position: relative;
+        top: 4px;
+        height: 16px;
+        width: 16px;
+        svg {
+            position: absolute;
+            transition: .5s ease-in-out;
             &:first-child {
-                -webkit-transform: perspective(800px) rotateY(0);
-                transform: perspective(800px) rotateY(0);
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                -webkit-transform: perspective(800px) rotateY(180deg);
+                transform: perspective(800px) rotateY(180deg);
             }
             &:last-child {
-                -webkit-transform: perspective(800px) rotateY(-179.9deg);
-                transform: perspective(800px) rotateY(-179.9deg);
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                -webkit-transform: perspective(800px) rotateY(0deg);
+                transform: perspective(800px) rotateY(0deg);
             }
         }
     }
-    .message {
+    .tick-animation svg {
         &:first-child {
-            margin: 16px 0 8px;
+            -webkit-transform: perspective(800px) rotateY(0);
+            transform: perspective(800px) rotateY(0);
         }
-        &.received {
-            background: #fff;
-            border-radius: 0px 5px 5px 5px;
-            float: left;
-            .metadata {
-                padding: 0 0 0 16px;
-            }
-            &:after {
-                border-width: 0px 10px 10px 0;
-                border-color: transparent #fff transparent transparent;
-                top: 0;
-                left: -10px;
-            }
-        }
-        &.sent {
-            background: $chat-me;
-            border-radius: 5px 0px 5px 5px;
-            float: right;
-            &:after {
-                border-width: 0px 0 10px 10px;
-                border-color: transparent transparent transparent $chat-me;
-                top: 0;
-                right: -10px;
-            }
+        &:last-child {
+            -webkit-transform: perspective(800px) rotateY(-179.9deg);
+            transform: perspective(800px) rotateY(-179.9deg);
         }
     }
-    /* Compose */
-    .conversation-compose {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-end;
-        overflow: hidden;
-        height: 50px;
-        width: 100%;
-        z-index: 2;
-        div,
-        input {
-            background: #fff;
-            height: 100%;
+}
+
+.message {
+    &:first-child {
+        margin: 16px 0 8px;
+    }
+    &.received {
+        background: #fff;
+        border-radius: 0px 5px 5px 5px;
+        float: left;
+        .metadata {
+            padding: 0 0 0 16px;
         }
-        .emoji {
+        &:after {
+            border-width: 0px 10px 10px 0;
+            border-color: transparent #fff transparent transparent;
+            top: 0;
+            left: -10px;
+        }
+    }
+    &.sent {
+        background: $chat-me;
+        border-radius: 5px 0px 5px 5px;
+        float: right;
+        &:after {
+            border-width: 0px 0 10px 10px;
+            border-color: transparent transparent transparent $chat-me;
+            top: 0;
+            right: -10px;
+        }
+    }
+}
+
+/* Compose */
+
+.conversation-compose {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    overflow: hidden;
+    height: 50px;
+    width: 100%;
+    z-index: 2;
+    div,
+    input {
+        background: #fff;
+        height: 100%;
+    }
+    .emoji {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        border-radius: 5px 0 0 5px;
+        flex: 0 0 auto;
+        margin-left: 8px;
+        width: 15px;
+    }
+    .input-msg {
+        border: 0;
+        flex: 1 1 auto;
+        font-size: 16px;
+        margin: 0;
+        outline: none;
+        min-width: 50px;
+    }
+    .photo {
+        flex: 0 0 auto;
+        border-radius: 0 0 5px 0;
+        text-align: center;
+        position: relative;
+        width: 48px;
+        &:after {
+            border-width: 0px 0 10px 10px;
+            border-color: transparent transparent transparent #fff;
+            border-style: solid;
+            position: absolute;
+            width: 0;
+            height: 0;
+            content: "";
+            top: 0;
+            right: -10px;
+        }
+        i {
+            display: block;
+            color: #7d8488;
+            font-size: 24px;
+            transform: translate(-50%, -50%);
+            position: relative;
+            top: 50%;
+            left: 50%;
+        }
+    }
+    .send {
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        flex: 0 0 auto;
+        margin-left: 8px;
+        margin-right: 8px;
+        padding: 0;
+        position: relative;
+        outline: none;
+        .circle {
+            background: $send-btn;
+            border-radius: 50%;
+            color: #fff;
+            position: relative;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: white;
-            border-radius: 5px 0 0 5px;
-            flex: 0 0 auto;
-            margin-left: 8px;
-            width: 15px;
-        }
-        .input-msg {
-            border: 0;
-            flex: 1 1 auto;
-            font-size: 16px;
-            margin: 0;
-            outline: none;
-            min-width: 50px;
-        }
-        .photo {
-            flex: 0 0 auto;
-            border-radius: 0 0 5px 0;
-            text-align: center;
-            position: relative;
-            width: 48px;
-            &:after {
-                border-width: 0px 0 10px 10px;
-                border-color: transparent transparent transparent #fff;
-                border-style: solid;
-                position: absolute;
-                width: 0;
-                height: 0;
-                content: "";
-                top: 0;
-                right: -10px;
-            }
             i {
-                display: block;
-                color: #7d8488;
                 font-size: 24px;
-                transform: translate(-50%, -50%);
-                position: relative;
-                top: 50%;
-                left: 50%;
-            }
-        }
-        .send {
-            background: transparent;
-            border: 0;
-            cursor: pointer;
-            flex: 0 0 auto;
-            margin-left: 8px;
-            margin-right: 8px;
-            padding: 0;
-            position: relative;
-            outline: none;
-            .circle {
-                background: $send-btn;
-                border-radius: 50%;
-                color: #fff;
-                position: relative;
-                width: 48px;
-                height: 48px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                i {
-                    font-size: 24px;
-                    margin-left: 5px;
-                }
+                margin-left: 5px;
             }
         }
     }
-    /* Small Screens */
-    @media (max-width: 768px) {
-        .marvel-device {
-            &.nexus5 {
-                border-radius: 0;
-                flex: none;
-                padding: 0;
-                max-width: none;
-                overflow: hidden;
-                height: 100%;
-                width: 100%;
-            }
-            >.screen .chat {
-                visibility: visible;
-            }
-            visibility: hidden;
-            .status-bar {
-                display: none;
-            }
-        }
-        .screen-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-        }
-        .conversation {
-            height: calc(100vh - 55px);
-            .conversation-container {
-                height: calc(100vh - 120px);
-            }
-        }
-    }
-    .user-name {
-        font-weight: bold;
-        display: block;
-        margin-bottom: 5px;
-    }
+}
+
+/* Small Screens */
+
+.user-name {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
 }
 
 .color-tui {
@@ -438,4 +421,38 @@ body {
     font-family: "TUIType";
     border-radius: 0;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35);
+}
+
+.marvel-device {
+    &.nexus5 {
+        border-radius: 0;
+        flex: none;
+        padding: 0;
+        max-width: none;
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+    }
+    >.screen .chat {
+        visibility: visible;
+    }
+    visibility: hidden;
+    .status-bar {
+        display: none;
+    }
+}
+
+.screen-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.conversation {
+    height: calc(100vh - 55px);
+    .conversation-container {
+        height: calc(100vh - 120px);
+    }
 }
