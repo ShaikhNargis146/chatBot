@@ -68831,7 +68831,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             console.log(data);
         });
     });
-myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $uibModal, apiService) {
+myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $uibModal, apiService, $interval) {
     $scope.template = TemplateService.getHTML("content/chat.html");
     TemplateService.title = "Chat"; //This is the Title of the Website
     TemplateService.header = "";
@@ -68840,6 +68840,16 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
     $scope.message = {};
 
     $scope.name = $.jStorage.get("name");
+
+    $scope.deviceTime = moment().format('h:mm');
+
+    $scope.max = 5;
+    $scope.isReadOnly = true;
+
+
+    $interval(function () {
+        $scope.deviceTime = moment().format('h:mm');
+    }, 1000);
 
     $scope.navigation = NavigationService.getNavigation();
     var modalInstance;
@@ -68862,9 +68872,8 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
 
     function scrollBottom() {
         $timeout(function () {
-            $(".chat-history").animate({
-                scrollTop: $(".chat-history ul").height() -
-                    $(".chat-history").height()
+            $(".conversation-container").animate({
+                scrollTop: $(".conversation-height").height()
             }, 400);
         }, 300);
     }
