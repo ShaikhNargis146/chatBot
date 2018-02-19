@@ -1,4 +1,4 @@
-myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $uibModal, apiService, $interval) {
+myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $uibModal, apiService, $interval, $geolocation) {
     $scope.template = TemplateService.getHTML("content/chat.html");
     TemplateService.title = "Chat"; //This is the Title of the Website
     TemplateService.header = "";
@@ -17,6 +17,21 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
     $interval(function () {
         $scope.deviceTime = moment().format('h:mm');
     }, 1000);
+
+    function getPosition() {
+        $geolocation.getCurrentPosition({
+            timeout: 60000
+        }).then(function (position) {
+            $scope.myPosition = position;
+            console.log(position);
+        });
+    }
+    getPosition();
+    $interval(function () {
+        getPosition();
+    }, 300000);
+
+
 
     $scope.navigation = NavigationService.getNavigation();
     var modalInstance;

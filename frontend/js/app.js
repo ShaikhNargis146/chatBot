@@ -10,7 +10,8 @@ var myApp = angular.module('myApp', [
     'angular-flexslider',
     'ui.swiper',
     'angularPromiseButtons',
-    'toastr'
+    'toastr',
+    "ngGeolocation"
 ]);
 
 // Define all the routes below
