@@ -181,6 +181,7 @@ var controller = {
                                 });
                                 response.on('end', function () {
                                     var places = JSON.parse(body);
+                                    data.city = "Near You";
                                     Bots.savePlaces(data, places.results, function () {});
                                 });
                             }).on('error', function (e) {
