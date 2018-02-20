@@ -167,7 +167,7 @@ var controller = {
                         });
                     }
 
-                    var reNear = RegExp("near me", "i");
+                    var reNear = RegExp("near by", "i");
                     var foundNear = req.body.text.match(reNear);
                     if (foundNear && req.body.position && req.body.position.lat && req.body.position.lng) {
                         async.waterfall([function (callback) {
