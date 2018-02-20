@@ -158,7 +158,6 @@ var controller = {
                                 callback(e);
                             });
                         }], res.callback);
-
                     } else {
                         res.callback();
                         Bots.getAll(function (err, data) {
@@ -167,6 +166,32 @@ var controller = {
                             }
                         });
                     }
+
+                    var reNear = RegExp("near me", "i");
+                    var foundNear = req.body.text.match(re);
+                    if (foundNear) {
+                        async.waterfall([function (callback) {
+                            Bots.findMatch(callback);
+                        }, function (data, callback) {
+                            var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw&type=' + data.type;
+                            https.get(url, function (response) {
+                                var body = '';
+                                response.on('data', function (chunk) {
+                                    body += chunk;
+                                });
+                                response.on('end', function () {
+                                    var places = JSON.parse(body);
+                                    Bots.savePlaces(data, places.results, res.callback);
+                                });
+                            }).on('error', function (e) {
+                                callback(e);
+                            });
+                        }], res.callback);
+                    }
+
+
+
+
                 }
 
 
