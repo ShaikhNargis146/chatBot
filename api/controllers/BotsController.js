@@ -181,7 +181,7 @@ var controller = {
                                 });
                                 response.on('end', function () {
                                     var places = JSON.parse(body);
-                                    data.city = "Near You";
+                                    data.city = "Your Vicinity";
                                     Bots.savePlaces(data, places.results, function () {});
                                 });
                             }).on('error', function (e) {
