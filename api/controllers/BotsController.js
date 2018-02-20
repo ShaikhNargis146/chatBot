@@ -168,12 +168,12 @@ var controller = {
                     }
 
                     var reNear = RegExp("near me", "i");
-                    var foundNear = req.body.text.match(re);
-                    if (foundNear && req.body.position && req.body.position.latitude && req.body.position.longitude) {
+                    var foundNear = req.body.text.match(reNear);
+                    if (foundNear && req.body.position && req.body.position.lat && req.body.position.lng) {
                         async.waterfall([function (callback) {
                             Bots.findMatch(callback);
                         }, function (data, callback) {
-                            var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw&type=' + data.type + "&location=" + req.body.position.latitude + "," + req.body.position.longitude + "&radius=3000&rankby=distance";
+                            var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw&type=' + data.type + "&location=" + _.round(req.body.position.lat, 7) + "," + _.round(req.body.position.lng, 7) + "&radius=3000";
                             https.get(url, function (response) {
                                 var body = '';
                                 response.on('data', function (chunk) {
@@ -181,10 +181,10 @@ var controller = {
                                 });
                                 response.on('end', function () {
                                     var places = JSON.parse(body);
-                                    Bots.savePlaces(data, places.results, res.callback);
+                                    Bots.savePlaces(data, places.results, function () {});
                                 });
                             }).on('error', function (e) {
-                                callback(e);
+                                // callback(e);
                             });
                         }], res.callback);
                     }
