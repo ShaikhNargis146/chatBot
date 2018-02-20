@@ -169,11 +169,11 @@ var controller = {
 
                     var reNear = RegExp("near me", "i");
                     var foundNear = req.body.text.match(re);
-                    if (foundNear) {
+                    if (foundNear && req.body.position && req.body.position.latitude && req.body.position.longitude) {
                         async.waterfall([function (callback) {
                             Bots.findMatch(callback);
                         }, function (data, callback) {
-                            var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw&type=' + data.type;
+                            var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyC2cMB4K6lnmacErJtGEBOJpJoNpZW1JIw&type=' + data.type + "&location=" + req.body.position.latitude + "," + req.body.position.longitude + "&radius=3000&rankby=distance";
                             https.get(url, function (response) {
                                 var body = '';
                                 response.on('data', function (chunk) {
