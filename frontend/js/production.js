@@ -68504,6 +68504,7 @@ angular.module('angularPromiseButtons')
   });
 
 
+!function(){"use strict";angular.module("ngGeolocation",[]).factory("$geolocation",["$rootScope","$window","$q",function(a,b,c){function d(){return"geolocation"in b.navigator}var e={getCurrentPosition:function(f){var g=c.defer();return d()?b.navigator.geolocation.getCurrentPosition(function(b){a.$apply(function(){e.position.coords=b.coords,e.position.timestamp=b.timestamp,g.resolve(b)})},function(b){a.$apply(function(){g.reject({error:b})})},f):g.reject({error:{code:2,message:"This web browser does not support HTML5 Geolocation"}}),g.promise},watchPosition:function(c){d()?this.watchId||(this.watchId=b.navigator.geolocation.watchPosition(function(b){a.$apply(function(){e.position.coords=b.coords,e.position.timestamp=b.timestamp,delete e.position.error,a.$broadcast("$geolocation.position.changed",b)})},function(b){a.$apply(function(){e.position.error=b,delete e.position.coords,delete e.position.timestamp,a.$broadcast("$geolocation.position.error",b)})},c)):e.position={error:{code:2,message:"This web browser does not support HTML5 Geolocation"}}},clearWatch:function(){this.watchId&&(b.navigator.geolocation.clearWatch(this.watchId),delete this.watchId)},position:{}};return e}])}();
 // Link all the JS Docs here
 var myApp = angular.module('myApp', [
     'ui.router',
@@ -68516,7 +68517,8 @@ var myApp = angular.module('myApp', [
     'angular-flexslider',
     'ui.swiper',
     'angularPromiseButtons',
-    'toastr'
+    'toastr',
+    "ngGeolocation"
 ]);
 
 // Define all the routes below
@@ -68771,13 +68773,19 @@ myApp.factory('NavigationService', function () {
 myApp.factory('apiService', function ($http, $q, $timeout) {
     return {
         // This is a demo Service for POST Method.
-        saveText: function (text, callback) {
+        saveText: function (text, callback, position) {
+            var location = {};
+            if (position && position.latitude && position.longitude) {
+                location.lat = position.latitude;
+                location.lng = position.longitude;
+            }
             $http({
                 url: adminurl + 'bots/saveText',
                 method: 'POST',
                 data: {
                     user: $.jStorage.get("name"),
-                    text: text
+                    text: text,
+                    position: location
                 }
             }).then(callback);
         },
@@ -68831,13 +68839,14 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             console.log(data);
         });
     });
-myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $uibModal, apiService, $interval) {
+myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $uibModal, apiService, $interval, $geolocation) {
     $scope.template = TemplateService.getHTML("content/chat.html");
     TemplateService.title = "Chat"; //This is the Title of the Website
     TemplateService.header = "";
     TemplateService.footer = "";
 
     $scope.message = {};
+    $scope.myPosition = {};
 
     $scope.name = $.jStorage.get("name");
 
@@ -68850,6 +68859,21 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
     $interval(function () {
         $scope.deviceTime = moment().format('h:mm');
     }, 1000);
+
+    function getPosition() {
+        $geolocation.getCurrentPosition({
+            timeout: 60000
+        }).then(function (position) {
+            console.log(position);
+            $scope.myPosition = position;
+        });
+    }
+    getPosition();
+    $interval(function () {
+        getPosition();
+    }, 60000);
+
+
 
     $scope.navigation = NavigationService.getNavigation();
     var modalInstance;
@@ -68896,7 +68920,8 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
     //  Send typed message
 
     $scope.sendMessage = function (chatText) {
-        apiService.saveText(chatText, function (res) {});
+        console.log($scope.myPosition);
+        apiService.saveText(chatText, function (res) {}, $scope.myPosition.coords);
         $scope.message.chatText = "";
     };
 
