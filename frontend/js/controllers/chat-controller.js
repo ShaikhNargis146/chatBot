@@ -23,7 +23,6 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
             timeout: 60000
         }).then(function (position) {
             $scope.myPosition = position;
-            console.log(position);
         });
     }
     getPosition();
@@ -78,7 +77,7 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
     //  Send typed message
 
     $scope.sendMessage = function (chatText) {
-        apiService.saveText(chatText, function (res) {});
+        apiService.saveText(chatText, function (res) {}, $scope.myPosition);
         $scope.message.chatText = "";
     };
 

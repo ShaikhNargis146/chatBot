@@ -1,13 +1,14 @@
 myApp.factory('apiService', function ($http, $q, $timeout) {
     return {
         // This is a demo Service for POST Method.
-        saveText: function (text, callback) {
+        saveText: function (text, callback, position) {
             $http({
                 url: adminurl + 'bots/saveText',
                 method: 'POST',
                 data: {
                     user: $.jStorage.get("name"),
-                    text: text
+                    text: text,
+                    position: position
                 }
             }).then(callback);
         },
