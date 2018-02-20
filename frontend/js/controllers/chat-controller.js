@@ -5,6 +5,7 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
     TemplateService.footer = "";
 
     $scope.message = {};
+    $scope.myPosition = {};
 
     $scope.name = $.jStorage.get("name");
 
@@ -22,13 +23,14 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
         $geolocation.getCurrentPosition({
             timeout: 60000
         }).then(function (position) {
+            console.log(position);
             $scope.myPosition = position;
         });
     }
     getPosition();
     $interval(function () {
         getPosition();
-    }, 300000);
+    }, 60000);
 
 
 
@@ -77,7 +79,8 @@ myApp.controller('ChatCtrl', function ($scope, TemplateService, NavigationServic
     //  Send typed message
 
     $scope.sendMessage = function (chatText) {
-        apiService.saveText(chatText, function (res) {}, $scope.myPosition);
+        console.log($scope.myPosition);
+        apiService.saveText(chatText, function (res) {}, $scope.myPosition.coords);
         $scope.message.chatText = "";
     };
 
