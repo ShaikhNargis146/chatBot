@@ -168,8 +168,10 @@ var controller = {
                     }
 
                     var reNear = RegExp("near by", "i");
+                    var reNearMe = RegExp("near me", "i");
                     var foundNear = req.body.text.match(reNear);
-                    if (foundNear && req.body.position && req.body.position.lat && req.body.position.lng) {
+                    var foundNearMe = req.body.text.match(reNearMe);
+                    if ((foundNear || foundNearMe) && req.body.position && req.body.position.lat && req.body.position.lng) {
                         async.waterfall([function (callback) {
                             Bots.findMatch(callback);
                         }, function (data, callback) {
